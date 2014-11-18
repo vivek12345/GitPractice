@@ -1,0 +1,28 @@
+<% provide(:title,'ToDoProject') %>
+<% flash.each do |key,value| %>
+<div class="alert alert-<%=key %>"><%=value %></div>
+<%end%>
+<h1>Create a new project</h1>
+<div class="container-fluid">
+	<div class="row-fluid">
+	<div class="span7">
+		<%=form_for @project do |p| %>
+		<%=p.label :name %>
+		<%=p.text_field :name,autofocus:'true' %>
+		<%=p.label :description %>
+		<%=p.text_area :description,rows:'25',cols:'20'%>
+		<%=p.submit "Create Post",class:'btn btn-large btn-primary'%>
+		<%end%>
+	</div>
+	
+	<div class="span5" id="rightcolumn">
+	<% if @projects.any? %>
+	<% @projects.each do |project| %>
+		<p><%=link_to project.name,project %></p><br>
+	<%end %>
+	<%end%>
+	<p style="background:#555;"><%=link_to 'Create a project',new_project_path %></p>
+	</div>
+
+	</div>
+	</div>

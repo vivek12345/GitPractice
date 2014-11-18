@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/Fixtures.html
+
+one:
+  taskname: MyString
+  project_id: 1
+  subtask_id: 1
+
+two:
+  taskname: MyString
+  project_id: 1
+  subtask_id: 1

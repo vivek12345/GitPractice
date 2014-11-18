@@ -1,0 +1,32 @@
+
+
+<%=render 'layouts/modal',:subtask=>subtask %>
+
+
+<div class="dropdown" id="dropdownMenu<%=subtask.id %>"> 
+
+
+  <a data-id='<%=subtask.id %>' data-target="#" style="float:right;" class="dropdown-toggle" id='dropdownMenu<%=subtask.id %>' data-toggle="dropdown"><i class="fa fa-pencil-square-o" style="margin-right:10px;margin-top:10px;"></i></a>
+  <p class="subtask" data-toggle="modal" data-target="#myModal_<%=subtask.id%>" id="subtask_<%=subtask.id %>"><%=subtask.name %></p>
+
+
+  <%=render 'subtasks/dropdown',:subtask=>subtask %>
+  <!--id="dropdownMenu<%=subtask.id %>"-->
+             <!--ul class="dropdown-menu" id="dropdown<%=subtask.id %>" aria-labelledby="dropdownMenu<%=subtask.id %>">
+              <li><a href="#">Action</a></li>
+              <li><a href="#">Another action</a></li>
+              <li><a href="#">Something else here</a></li>
+              <li class="divider"></li>
+              <li><a href="#">Separated link</a></li>
+            </ul-->
+
+
+
+</div>
+
+            
+
+
+  				
+
+

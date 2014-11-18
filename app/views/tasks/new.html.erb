@@ -1,0 +1,12 @@
+
+	<div class="addtaskform">
+		<%=form_for [@project,@project.tasks.build],:remote => true do |t| %>
+		
+		<%=t.label :taskname %>
+		<%=t.text_field :taskname,autofocus:'true' %>
+		
+		<%=t.submit "Save",class:'btn btn-large btn-primary'%>
+		<%end%>
+	</div>
+
+

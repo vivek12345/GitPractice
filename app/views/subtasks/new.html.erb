@@ -1,0 +1,20 @@
+<% provide(:title,'ToDoProject') %>
+<% flash.each do |key,value| %>
+<div class="alert alert-<%=key %>"><%=value %></div>
+<%end%>
+<h1>Create a subtask</h1>
+<div class="container-fluid">
+	<div class="row-fluid">
+	<div class="span7">
+		<%=form_for [@task,@subtask] do |s| %>
+		
+		<%=s.label :name %>
+		<%=s.text_field :name,autofocus:'true' %>
+		<%=s.label :description %>
+		<%=s.text_area :description,rows:'25',cols:'20'%>
+		<%=s.submit "Create Sub Task",class:'btn btn-large btn-primary'%>
+		<%end%>
+	</div>
+	</div>
+	</div>
+

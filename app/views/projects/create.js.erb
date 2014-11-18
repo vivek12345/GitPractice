@@ -1,0 +1,5 @@
+
+$('.projects').append('<%=j render 'projects/index', object: @project %>');
+$(":input:not(input[type=submit])").val("");
+$('.addprojectform').hide(1000);
+

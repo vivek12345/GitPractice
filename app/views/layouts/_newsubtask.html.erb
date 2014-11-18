@@ -1,0 +1,18 @@
+<% provide(:title,'ToDoProject') %>
+<% flash.each do |key,value| %>
+<div class="alert alert-<%=key %>"><%=value %></div>
+<%end%>
+
+
+	<div class="span3">
+	
+		<%=form_for ([@task,@task.subtask.build]) do |s| %>
+		
+		<%=s.label :name %>
+		<%=s.text_field :name,autofocus:'true' %>
+		
+		<%=s.submit "Add",class:'btn btn-primary'%>
+		<%end%>
+	</div>
+	
+

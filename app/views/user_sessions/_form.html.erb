@@ -1,0 +1,71 @@
+<!--div class='form-horizontal navbar-form navbar-left form'>
+<div class="form-group">
+<%= form_for(@user_session) do |f| %>
+  <% if @user_session.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@user_session.errors.count, "error") %> prohibited this user_session from being saved:</h2>
+
+      <ul>
+      <% @user_session.errors.full_messages.each do |msg| %>
+        <li><%= msg %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  
+    <div class="col-sm-10">
+    <%= f.text_field :email,placeholder:'Email-id',class:'form-control' %>
+    </div>
+  
+  
+  <div class="col-sm-10">
+    <%= f.password_field :password,placeholder:'Password',class:'form-control' %>
+    </div>
+  
+
+  
+    <%= f.submit 'Login',class:'btn btn-success' %><br>
+    <a href="#">Forgot password?</a>
+  
+<% end %>
+</div-->
+<%flash.each do |key,value| %>
+<div class="alert alert-<%=key %>"><%=value %></div>
+<%end%>
+<div class="container">
+
+<div class="row" style="margin-top:120px;">
+    <div class="col-xs-12 col-sm-8 col-md-6 col-sm-offset-2 col-md-offset-3">
+    <%=form_for(@user_session) do |f|%>
+    <%= render 'shared/error_messages', object: f.object %>
+      <fieldset>
+        <h2>Please Sign In</h2>
+        <hr class="colorgraph">
+        <div class="form-group">
+                    <%=f.text_field :email,class:'form-control input-lg',placeholder:'Email Address'%>
+        </div>
+        <div class="form-group">
+                    <%=f.password_field :password,class:"form-control input-lg",placeholder:"Password"%>
+        </div>
+        <span class="button-checkbox">
+          <button type="button" class="btn" data-color="info">Remember Me</button>
+                    <input type="checkbox" name="remember_me" id="remember_me" checked="checked" class="hidden">
+          <%=link_to 'Forgot Password?',new_password_reset_path,class:"btn btn-link pull-right"%>
+          
+        </span>
+        <hr class="colorgraph">
+        <div class="row">
+          <div class="col-xs-6 col-sm-6 col-md-6">
+                        <%=f.submit 'Sign In',class:"btn btn-lg btn-success btn-block"%>
+          </div>
+          <div class="col-xs-6 col-sm-6 col-md-6">
+            <%=link_to 'Register',:signup,class:"btn btn-lg btn-primary btn-block" %>
+          </div>
+        </div>
+      </fieldset>
+    <%end%>
+  </div>
+</div>
+
+</div>

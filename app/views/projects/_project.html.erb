@@ -1,0 +1,9 @@
+<script>
+$('.myul').width(<%=project.tasks.count %>*232+800);
+</script>
+<%if project.tasks.any?%>
+<% project.tasks.each do |task| %>
+<%=render :partial=>task %>
+<%end%>
+			
+<%end%>

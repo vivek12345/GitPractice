@@ -1,0 +1,20 @@
+<ul class="dropdown-menu" id="dropdown<%=subtask.id %>" aria-labelledby="dropdownMenu<%=subtask.id %>">
+	<li><a href="#" id="delete_<%=subtask.id%>">Delete</a></li>
+	<li><a href="#">Another action</a></li>
+	<li><a href="#">Something else here</a></li>
+	<li class="divider"></li>
+	<li><a href="#">Separated link</a></li>
+</ul>
+<script type="text/javascript">
+$('#delete_<%=subtask.id%>').click(function(e){
+	$('#dropdownMenu<%=subtask.id %>').remove();
+	$('#myModal_<%=subtask.id %>').remove();
+	$('#subtask_<%=subtask.id%>').fadeOut(2000).remove();
+	
+	$.ajax({
+        type: "DELETE",
+        url: "/subtasks/delete",
+        data: { subtask: { subtask_id:<%=subtask.id%>  } },
+        });
+});
+</script>

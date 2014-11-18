@@ -1,0 +1,8 @@
+Sorry, before you can sign in you need to confirm your email address
+<html>
+<body>
+
+<p style="font-family:JustOldFashion;font-size:35px;valign:middle;">Welcome to,<br> PlanYour<span style="color:#0893cf;">Task</span>.com</p>
+<%=link_to 'Resend confirmation email', resend_activation_users_path(:email => user.email).html_safe %>.
+</body>
+</html>

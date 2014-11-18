@@ -1,0 +1,5 @@
+$('.user .myul').width($('.user .myul').width()+300);
+$('.myultask').append('<%=j render partial: "tasks/task", object: @task %>');
+$(":input:not(input[type=submit])").val("");
+$('.addtaskform').hide(1000);
+
