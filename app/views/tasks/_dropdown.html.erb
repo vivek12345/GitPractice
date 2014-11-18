@@ -1,0 +1,19 @@
+<ul class="dropdown-menu" id="dropdowntask<%=task.id %>" aria-labelledby="dropdownMenuTask<%=task.id %>">
+	<li><a href="#" id="deleteTask_<%=task.id%>">Delete</a></li>
+	<li><a href="#">Another action</a></li>
+	<li><a href="#">Something else here</a></li>
+	<li class="divider"></li>
+	<li><a href="#">Separated link</a></li>
+</ul>
+<script type="text/javascript">
+$('#deleteTask_<%=task.id%>').click(function(e){
+	$('#dropdownMenuTask<%=task.id %>').remove();
+	$('#tasks_<%=task.id%>').fadeOut(2000).remove();
+	
+	$.ajax({
+        type: "DELETE",
+        url: "/tasks/delete",
+        data: { task: { task_id:<%=task.id%>  } },
+        });
+});
+</script>

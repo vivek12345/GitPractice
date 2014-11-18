@@ -5,18 +5,18 @@ class ActivationsController < ApplicationController
   	#|| (raise Exception)
      # raise Exception if @user.active?
      if @user
-      if !@user.activate!
-        flash[:success] = "Your account has been activated!"
-        UserSession.create(@user, false) # Log user in manually
-        @user.deliver_welcome!
-        redirect_to root_url
-      else
-        
+        if !@user.activate!
+          flash[:success] = "Your account has been activated!"
+          UserSession.create(@user, false) # Log user in manually
+          @user.deliver_welcome!
+          redirect_to root_url
+        else
         render :action => :new
+        end
+      else
+  	   flash[:danger]="Sorry but user with this activation code is not found"
+  	   redirect_to :login
       end
-  else
-  	flash[:danger]="Sorry but user with this activation code is not found"
-  	redirect_to :login
   end
 end
 

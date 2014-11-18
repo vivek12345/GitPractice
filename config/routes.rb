@@ -18,7 +18,8 @@ MyTodo::Application.routes.draw do
  end
 end
 
- match '/activations/:activation_code', :controller => 'activations', :action => 'create'
+match '/activations/:activation_code', :controller => 'activations', :action => 'create' , :as => 'activation'
+
   #resources :activations
   
 

@@ -176,6 +176,12 @@ border-bottom:2px solid #001916;
   margin-top:-30px;
 }
 
+.dropdown-menu-task
+{ 
+  margin-left:200px;
+  margin-top:-30px;
+}
+
 
 /* forms */
 
@@ -538,11 +544,14 @@ opacity:0.8;
 
 .userlist
 {
-  background:#000;
+  background:#222;
   color:#fff;
-  border-radius:2px;  
-  font-size:10px;
-  padding:5px auto;
+  padding:5px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  font-size:12px;
 }
 
 
