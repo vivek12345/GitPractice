@@ -17,14 +17,17 @@
 				<div class="col-md-5 example example-numbers" style="float:right;" id="type_<%=subtask.id %>">
 					<p class="example-description">Enter the name of the member whom you want assign this card</p>
 					<ul class="users" id="user_<%=subtask.id%>">
-					<%if !subtask.users.empty?%>
+						<%if !subtask.users.empty?%>
 						<%subtask.users.each do |user|%>
-							<li class="userlist col-md-6"><%=user.username%><a class="removeuser"><i class="fa fa-times fa-lg" style="margin:0px auto;"></i></a></li>
+						<li class="userlist col-md-6"><%=user.username%><a class="removeuser"><i class="fa fa-times fa-lg" style="margin:0px auto;"></i></a></li>
 						<%end%>
-					<%end%>
+						<%end%>
 					</ul>
 					<input class="col-md-12 form-control typeahead" id="typeahead_<%=subtask.id%>" type="text" placeholder="UserName">
 					<a data-id='<%=subtask.id %>' href="#" class="myclose"><i class="fa fa-times fa-lg" style="margin:10px auto;"></i></a>
+				</div>
+				<div class="col-md-5" style="float:right;">
+					<input class="form-control" id="datepicker_<%=subtask.id%>" type="text" placeholder="StartDate">
 				</div>
 				<script type="text/javascript">
 				$('.members > a').click(function(){
@@ -35,25 +38,42 @@
 					$('#type_' + $(this).data('id')).hide();
 				});
 				usernames = new Bloodhound({
-          datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d); },
-          queryTokenizer: Bloodhound.tokenizers.whitespace,
-          remote: {
-            url: '/subtasks/query?q=%QUERY'
-          }
-        });
-        usernames.initialize();
+					datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d); },
+					queryTokenizer: Bloodhound.tokenizers.whitespace,
+					remote: {
+						url: '/subtasks/query?q=%QUERY'
+					}
+				});
+				usernames.initialize();
 
- 			$('#typeahead_<%=subtask.id%>').typeahead(null, {
-        displayKey: 'username',
-        source: usernames.ttAdapter(),
-        }).on('typeahead:selected', function(event, datum) {
-        $('#user_<%=subtask.id%>').append('<li class="userlist col-md-6">'+datum.username+'<a class="removeuser"><i class="fa fa-times fa-lg" style="margin:0px auto;"></i></a></li>');
-      $.ajax({
-        type: "POST",
-        url: "/subtasks/createuser",
-        data: { user: { user_id: datum.user_id, subtask_id:<%=subtask.id%>  } },
-        });
-      });
+				$('#typeahead_<%=subtask.id%>').typeahead(null, {
+					displayKey: 'username',
+					source: usernames.ttAdapter(),
+				}).on('typeahead:selected', function(event, datum) {
+					$('#user_<%=subtask.id%>').append('<li class="userlist col-md-6">'+datum.username+'<a class="removeuser"><i class="fa fa-times fa-lg" style="margin:0px auto;"></i></a></li>');
+					$.ajax({
+						type: "POST",
+						url: "/subtasks/createuser",
+						data: { user: { user_id: datum.user_id, subtask_id:<%=subtask.id%>  } },
+					});
+				});
+			
+				$(function(){
+					$('#datepicker_<%=subtask.id%>').datepicker({
+					onSelect:function(){
+						updateTable();
+					}
+				});
+				});
+
+				function updateTable()
+				{
+					$.ajax({
+						type: "POST",
+						url: "/subtasks/updateDate",
+						data: { subtasks: { id:<%=subtask.id%>,start_date:$('#datepicker_<%=subtask.id%>').value }},
+					});
+				}
 				</script>
 
 

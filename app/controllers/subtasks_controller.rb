@@ -46,6 +46,11 @@ class SubtasksController < ApplicationController
 
 	end
 
+	def updateDate
+		@subtask=Subtask.find(params[:subtasks][:id])
+		@subtask.update_attribute(:start_date,params[:subtasks][:start_date])
+	end
+
 	def destroy
 		@subtask=Subtask.find(params[:subtask][:subtask_id])
 		@subtask.destroy

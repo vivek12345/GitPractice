@@ -64,6 +64,21 @@
       bgincrement : 450
     });
 
+    $('#datepicker').datepicker({
+      onSelect:function(){
+        updateTable();
+      }
+    });
+
+    function updateTable()
+    {
+      $.ajax({
+        type: "PUT",
+        url: "/subtasks/update",
+        data: { subtask: { start_date:$('#datepicker').value  } },
+        });
+    }
+
 
 
   });

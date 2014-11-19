@@ -4,6 +4,7 @@ MyTodo::Application.routes.draw do
   get "subtasks/query"
 
   match '/subtasks/createuser', :controller => 'subtasks', :action => 'createuser'
+  match '/subtasks/updateDate', :controller => 'subtasks', :action => 'updateDate'
   
   resources :users, :user_sessions
   match 'login' => 'user_sessions#new', :as => :login
