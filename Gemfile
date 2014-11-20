@@ -10,6 +10,7 @@ gem 'twitter-typeahead-rails'
 # gem 'rails', :git => 'git://github.com/rails/rails.git'
 
 gem 'sqlite3'
+gem 'activeadmin'
 
 
 # Gems used only for assets and not required

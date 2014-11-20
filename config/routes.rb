@@ -1,4 +1,8 @@
 MyTodo::Application.routes.draw do
+  root :to => 'plan_your_tasks#index'
+  devise_for :admin_users, ActiveAdmin::Devise.config
+  ActiveAdmin.routes(self)
+
   get "activations/create"
   get "tasks/edit"
   get "subtasks/query"
@@ -39,7 +43,7 @@ match '/activations/:activation_code', :controller => 'activations', :action => 
     
 
 
-  root :to => 'plan_your_tasks#index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

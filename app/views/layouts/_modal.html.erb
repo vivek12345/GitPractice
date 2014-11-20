@@ -71,7 +71,7 @@
 					$.ajax({
 						type: "POST",
 						url: "/subtasks/updateDate",
-						data: { subtasks: { id:<%=subtask.id%>,start_date:$('#datepicker_<%=subtask.id%>').value }},
+						data: { subtasks: { id:<%=subtask.id%>,start_date:$('#datepicker_<%=subtask.id%>').val() }},
 					});
 				}
 				</script>
