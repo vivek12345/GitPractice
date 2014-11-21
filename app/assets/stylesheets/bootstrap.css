@@ -6064,7 +6064,7 @@ button.close {
   margin-left: 0;
 }
 
-@media screen and (min-width: 768px) {
+/*@media screen and (min-width: 768px) {
   .modal-dialog {
     width: 600px;
     margin: 30px auto;
@@ -6073,7 +6073,7 @@ button.close {
     -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
             box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
   }
-}
+}*/
 
 .tooltip {
   position: absolute;

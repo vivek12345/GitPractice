@@ -491,7 +491,7 @@ width:1000px;
 }
 .subtaskdescform
 {
-  display:none;
+  visibility:hidden;
   .myarea
   {
   background: #7d7e7d; /* Old browsers */
@@ -553,6 +553,53 @@ opacity:0.8;
   border-radius: 8px;
   font-size:12px;
 }
+
+/*Add a scrollbar coz the content might overflow and go out of the modal content area*/
+.subtask_description
+{
+  overflow-y:auto;
+  display:block;
+  max-height:200px;
+  background:#fff;
+  border-radius:5px;
+  padding:10px;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border:2px solid #000;
+            border-bottom:3px solid #000;
+
+}
+
+
+@media screen and (min-width: 768px) {
+  .modal-dialog {
+    width: 800px;
+    margin: 30px auto;
+  }
+  .modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+}
+
+@media screen and (max-width: 500px) {
+  .modal-dialog {
+    
+    margin: 30px auto;
+  }
+  .modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  .modal-body {
+    height:500px;
+  }
+}
+.modal-body
+{
+  height:450px;
+}
+
 
 
 

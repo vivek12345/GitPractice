@@ -4,38 +4,45 @@
 			<div class="modal-header">
 				<button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button>
 				<h4 class="modal-title" id="myModalLabel_<%=subtask.id %>"><%=subtask.name%> in <%=subtask.task.taskname %></h4>
-
 			</div>
 			<div class="modal-body">
-				<div class="mydes col-md-7" id="mydes_<%=subtask.id%>">
+				<div class="row">
+				<div class="mydes col-md-7 col-xs-7 col-sm-12" id="mydes_<%=subtask.id%>">
 					<%=render 'subtasks/descform',:subtask=>subtask %>
 				</div>
-				<div class="col-md-5 members" style="float:right;">
-					<a class="col-md-12 btn btn-warning" data-id='<%=subtask.id %>'>AddMembers
+				<div class="col-md-5 col-xs-5 members">
+					<a class="col-md-12 col-xs-12 btn btn-primary">AssignedTo
 					</a>
 				</div>
-				<div class="col-md-5 example example-numbers" style="float:right;" id="type_<%=subtask.id %>">
-					<p class="example-description">Enter the name of the member whom you want assign this card</p>
+				<div class="UsersAssigned col-md-5">
 					<ul class="users" id="user_<%=subtask.id%>">
-						<%if !subtask.users.empty?%>
+					<%if !subtask.users.empty?%>
 						<%subtask.users.each do |user|%>
-						<li class="userlist col-md-6"><%=user.username%><a class="removeuser"><i class="fa fa-times fa-lg" style="margin:0px auto;"></i></a></li>
+							<li class="userlist col-md-5 col-sm-5 col-xs-5"><%=user.username%><a class="removeuser"><i class="fa fa-times fa-lg" style="margin:0px auto;"></i></a></li>
 						<%end%>
-						<%end%>
-					</ul>
-					<input class="col-md-12 form-control typeahead" id="typeahead_<%=subtask.id%>" type="text" placeholder="UserName">
-					<a data-id='<%=subtask.id %>' href="#" class="myclose"><i class="fa fa-times fa-lg" style="margin:10px auto;"></i></a>
+					<%end%>
+				</ul>
 				</div>
-				<div class="col-md-5" style="float:right;">
-					<input class="form-control" id="datepicker_<%=subtask.id%>" type="text" placeholder="StartDate">
+				<div class="col-md-5 col-xs-5 members">
+					<a class="col-md-12 col-xs-12 btn btn-warning" data-id='<%=subtask.id %>' style="border-bottom-left-radius:0px;border-bottom-right-radius:0px;">AssignMembers
+					</a>
 				</div>
+				<div class="col-md-5 example example-numbers" id="type_<%=subtask.id %>">
+					<div class="userdropdown" style="background:#bbb;border-bottom-left-radius:5px;border-bottom-right-radius:5px;margin:auto;padding:2px;">
+					<p class="example-description">Enter the name of the member whom you want to assign this card</p>
+					<input class="form-control typeahead" id="typeahead_<%=subtask.id%>" type="text" placeholder="UserName">
+					<a data-id='<%=subtask.id %>' href="#" class="closemembers"><i class="fa fa-times fa-lg" style="margin:10px auto;"></i></a>
+					</div>
+				</div>
+			</div>
+				
 				<script type="text/javascript">
 				$('.members > a').click(function(){
-					$('#type_'+$(this).data('id')).show();
+					$('#type_'+$(this).data('id')).slideDown();
 				});
 
-				$('.example > a').click(function(e){
-					$('#type_' + $(this).data('id')).hide();
+				$('.userdropdown > a').click(function(e){
+					$('#type_' + $(this).data('id')).slideUp();
 				});
 				usernames = new Bloodhound({
 					datumTokenizer: function(d) { return Bloodhound.tokenizers.whitespace(d); },
@@ -50,7 +57,7 @@
 					displayKey: 'username',
 					source: usernames.ttAdapter(),
 				}).on('typeahead:selected', function(event, datum) {
-					$('#user_<%=subtask.id%>').append('<li class="userlist col-md-6">'+datum.username+'<a class="removeuser"><i class="fa fa-times fa-lg" style="margin:0px auto;"></i></a></li>');
+					$('#user_<%=subtask.id%>').append('<li class="userlist col-md-5 col-sm-5 col-xs-5">'+datum.username+'<a class="removeuser"><i class="fa fa-times fa-lg" style="margin:0px auto;"></i></a></li>');
 					$.ajax({
 						type: "POST",
 						url: "/subtasks/createuser",
@@ -59,33 +66,45 @@
 				});
 			
 				$(function(){
-					$('#datepicker_<%=subtask.id%>').datepicker({
+					$('#datepickerstart_<%=subtask.id%>').datepicker({
 					onSelect:function(){
-						updateTable();
+						updateTable("start");
+					}
+				});
+					$('#datepickerend_<%=subtask.id%>').datepicker({
+					onSelect:function(){
+						updateTable("end");
 					}
 				});
 				});
 
-				function updateTable()
+				function updateTable(value)
 				{
 					$.ajax({
 						type: "POST",
-						url: "/subtasks/updateDate",
-						data: { subtasks: { id:<%=subtask.id%>,start_date:$('#datepicker_<%=subtask.id%>').val() }},
+						url: "/subtasks/updateDate"+value,
+						data: { subtasks: { id:<%=subtask.id%>,start_date:$('#datepicker'+value+'_<%=subtask.id%>').val() }},
 					});
 				}
 				</script>
 
-
-
 			</div>
 
-
-
-
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
-				<button type="button" class="btn btn-primary">Save changes</button>
+				<div class="row">
+				<div class="col-md-5" style="margin-bottom:-20px;float:left;">
+					<a class="col-md-12 col-xs-12 btn btn-success">Start Date
+					</a>
+					<input class="form-control" id="datepickerstart_<%=subtask.id%>" type="text" placeholder="StartDate">
+				</div>
+				<div class="col-md-5" style="margin-bottom:-20px;float:right;">
+					<a class="col-md-12 col-xs-12 btn btn-danger">End Date
+					</a>
+					<input class="form-control" id="datepickerend_<%=subtask.id%>" type="text" placeholder="EndDate">
+				</div>
+				</div>
+				<!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<button type="button" class="btn btn-primary">Save changes</button-->
 			</div>
 		</div><!-- /.modal-content -->
 	</div><!-- /.modal-dialog -->

@@ -1,25 +1,26 @@
- <%=subtask.description %><br>
-                    <a data-id='<%=subtask.id %>' href="#" id='editdesc_<%=subtask.id %>'>Edit description...</a>
-                      <div class="subtaskdescform" id="subtaskdesform_<%=subtask.id %>">
-                      <%=form_for subtask,:remote=>:true,:method => :put do |f| %>
-                      <%= f.text_area :description,rows:'5',cols:'12',:class=>'myarea'%>
-                      <%= f.submit "save",class:'btn btn-success col-md-4' %>
-                      <a data-id='<%=subtask.id %>' href="#" class="myclose"><i class="fa fa-times fa-lg" style="margin:10px auto;"></i></a>
-                      <% end %>
-                      <script type="text/javascript">
-                      $('.mydes > a').click(function(e){
-              $('#subtaskdesform_' + $(this).data('id')).show(1000);
-              $('myarea').show();
-              e.preventDefault();
-            });
-            $('.myclose').click(function(e){
-              
+ <% if subtask.description%>
+ <div id="subtaskdescription_<%=subtask.id%>" class="subtask_description" style="margin-bottom:10px;"> 
+ <%=subtask.description %>
+ </div>
+<%end%>
+<a data-id='<%=subtask.id %>' href="#" id='editdesc_<%=subtask.id %>'>Edit description...</a>
+<div class="subtaskdescform" id="subtaskdesform_<%=subtask.id %>">
+  <%=form_for subtask,:remote=>:true,:method => :put do |f| %>
+  <%= f.text_area :description,rows:'5',cols:'12',:class=>'myarea'%>
+  <%= f.submit "save",class:'btn btn-success col-md-4 col-xs-10 col-sm-10' %>
+  <a data-id='<%=subtask.id %>' href="#" class="myclose"><i class="fa fa-times fa-lg" style="margin:10px auto;"></i></a>
+  <% end %>
+  <script type="text/javascript">
+  $('.mydes > a').click(function(e){
+    $('#subtaskdesform_' + $(this).data('id')).css("visibility","visible");
+    $('myarea').show();
+    e.preventDefault();
+  });
+  $('.myclose').click(function(e){
 
-              $('#subtaskdesform_'+ $(this).data('id')).hide(1000);
-              e.preventDefault();
-            });
-            </script>
-  
 
-                      
-                    </div>
+    $('#subtaskdesform_'+ $(this).data('id')).css("visibility","hidden");
+    e.preventDefault();
+  });
+  </script>
+</div>

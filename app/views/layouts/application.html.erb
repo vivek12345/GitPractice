@@ -22,6 +22,7 @@
       updateOnWindowResize: true
     });
 
+
     $( ".myultask" ).sortable();
     $( ".myultask" ).disableSelection();
     $( ".addtaskmovable" ).sortable();
@@ -63,23 +64,6 @@
       autoplay  : true,
       bgincrement : 450
     });
-
-    $('#datepicker').datepicker({
-      onSelect:function(){
-        updateTable();
-      }
-    });
-
-    function updateTable()
-    {
-      $.ajax({
-        type: "PUT",
-        url: "/subtasks/update",
-        data: { subtask: { start_date:$('#datepicker').value  } },
-        });
-    }
-
-
 
   });
 </script>
