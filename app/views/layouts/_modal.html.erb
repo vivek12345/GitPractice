@@ -65,44 +65,14 @@
 					});
 				});
 			
-				$(function(){
-					$('#datepickerstart_<%=subtask.id%>').datepicker({
-					onSelect:function(){
-						updateTable("start");
-					}
-				});
-					$('#datepickerend_<%=subtask.id%>').datepicker({
-					onSelect:function(){
-						updateTable("end");
-					}
-				});
-				});
-
-				function updateTable(value)
-				{
-					$.ajax({
-						type: "POST",
-						url: "/subtasks/updateDate"+value,
-						data: { subtasks: { id:<%=subtask.id%>,start_date:$('#datepicker'+value+'_<%=subtask.id%>').val() }},
-					});
-				}
+				
 				</script>
 
 			</div>
 
 			<div class="modal-footer">
-				<div class="row">
-				<div class="col-md-5" style="margin-bottom:-20px;float:left;">
-					<a class="col-md-12 col-xs-12 btn btn-success">Start Date
-					</a>
-					<input class="form-control" id="datepickerstart_<%=subtask.id%>" type="text" placeholder="StartDate">
-				</div>
-				<div class="col-md-5" style="margin-bottom:-20px;float:right;">
-					<a class="col-md-12 col-xs-12 btn btn-danger">End Date
-					</a>
-					<input class="form-control" id="datepickerend_<%=subtask.id%>" type="text" placeholder="EndDate">
-				</div>
-				</div>
+				
+				<%=render 'subtasks/footer',:subtask=>subtask %>
 				<!--button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
 				<button type="button" class="btn btn-primary">Save changes</button-->
 			</div>

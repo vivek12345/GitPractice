@@ -30,4 +30,7 @@ class ProjectsController < ApplicationController
 		@projects=current_user.projects
 	end
 
+
+	
+
 end

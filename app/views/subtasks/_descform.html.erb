@@ -1,4 +1,4 @@
- <% if subtask.description%>
+ <% if !subtask.description.blank?%>
  <div id="subtaskdescription_<%=subtask.id%>" class="subtask_description" style="margin-bottom:10px;"> 
  <%=subtask.description %>
  </div>
@@ -6,7 +6,11 @@
 <a data-id='<%=subtask.id %>' href="#" id='editdesc_<%=subtask.id %>'>Edit description...</a>
 <div class="subtaskdescform" id="subtaskdesform_<%=subtask.id %>">
   <%=form_for subtask,:remote=>:true,:method => :put do |f| %>
+  <%=f.hidden_field :name%>
   <%= f.text_area :description,rows:'5',cols:'12',:class=>'myarea'%>
+  <%=f.hidden_field :task_id%>
+  <%=f.hidden_field :start_date %>
+  <%=f.hidden_field :end_date%>
   <%= f.submit "save",class:'btn btn-success col-md-4 col-xs-10 col-sm-10' %>
   <a data-id='<%=subtask.id %>' href="#" class="myclose"><i class="fa fa-times fa-lg" style="margin:10px auto;"></i></a>
   <% end %>

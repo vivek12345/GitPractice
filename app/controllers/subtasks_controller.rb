@@ -35,7 +35,8 @@ class SubtasksController < ApplicationController
 		#@task=@subtask.task
 		#@subtask.description=params[:subtask][:description]
 		respond_to do |format|
-			if @subtask.update_attribute(:description,params[:subtask][:description])
+			#if @subtask.update_attribute(:description,params[:subtask][:description])
+			if @subtask.update_attributes(params[:subtask])
 				format.html{redirect_to @project}
 				format.js
 			else
@@ -46,16 +47,6 @@ class SubtasksController < ApplicationController
 
 	end
 
-	def updateDatestart
-		@subtask=Subtask.find(params[:subtasks][:id])
-		@subtask.update_attribute(:start_date,params[:subtasks][:start_date])
-	end
-
-	def updateDateend
-		@subtask=Subtask.find(params[:subtasks][:id])
-		@subtask.update_attribute(:end_date,params[:subtasks][:start_date])
-	end
-
 	def destroy
 		@subtask=Subtask.find(params[:subtask][:subtask_id])
 		@subtask.destroy
@@ -63,11 +54,11 @@ class SubtasksController < ApplicationController
 
 	def query
 		users = User.joins(:assigns => :project)
-		foundusers=users.where('username like %',:q)
+		foundusers=users.where("username LIKE ?", "%#{params[:q]}%")
       	respond_to do |format|
       		format.json do
         # Create an array from the search results.
-        		results = users.map do |user|
+        		results = foundusers.map do |user|
           		# Each element will be a hash containing only the title of the article.
           		# The title key is used by typeahead.js.
          		 { username: user.username,
