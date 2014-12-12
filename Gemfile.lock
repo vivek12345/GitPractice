@@ -121,11 +121,6 @@ GEM
       activesupport (= 3.2.1)
       bundler (~> 1.0)
       railties (= 3.2.1)
-    rails_12factor (0.0.2)
-      rails_serve_static_assets
-      rails_stdout_logging
-    rails_serve_static_assets (0.0.2)
-    rails_stdout_logging (0.0.3)
     railties (3.2.1)
       actionpack (= 3.2.1)
       activesupport (= 3.2.1)
@@ -181,7 +176,6 @@ DEPENDENCIES
   jquery-rails
   pg (= 0.17.1)
   rails (= 3.2.1)
-  rails_12factor (= 0.0.2)
   rake (~> 10.1.1)
   sass-rails (~> 3.2.3)
   shelly-dependencies
