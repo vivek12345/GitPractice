@@ -34,8 +34,13 @@ class SubtasksController < ApplicationController
 		@subtask=Subtask.find(params[:id])
 		#@task=@subtask.task
 		#@subtask.description=params[:subtask][:description]
+		if(!params[:commit].nil?)
+			if(params[:commit]=="Mark As Complete")
+				params[:subtask][:complete]=@subtask.toggle(:complete).complete
+			end
+		end
 		respond_to do |format|
-			#if @subtask.update_attribute(:description,params[:subtask][:description])
+			
 			if @subtask.update_attributes(params[:subtask])
 				format.html{redirect_to @project}
 				format.js

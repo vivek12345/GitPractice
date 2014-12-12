@@ -14,14 +14,14 @@
 						<p class="addtask"><a href="#" class="taskform">Add a Task</a></p>
 						<div class="addtaskform" style="width:218px;margin:0 2px 0px 3px;">
 							<%=form_for [@project,@project.tasks.build],:remote => true do |t| %>
-							
-							
+
+
 							<%= t.text_field :taskname%>
-							
+
 							<%=t.submit "Save",class:'btn btn-primary'%>
 							<a href="#" id="close"><i class="fa fa-times fa-lg"></i></a>
 							<%end%>
-							
+
 						</div>
 					</div>
 					<script type="text/javascript">
@@ -35,30 +35,20 @@
 						e.preventDefault();
 					});
 
+
+
 					</script>
 
-					
-					
-
-					
 				</ul>	
-				
-				
-
-
-
 
 			</div>
 
-
-			
 			<!--div class="span3" id="rightcolumn"-->
 			<div class="col-md-3 col-lg-3" id="rightcolumn">
 				<p><%=@project.name %></p>
 				<p><%=link_to 'Add Task',new_project_task_path(@project) %></p>
-				
 			</div>
-			
+
 		</div>
 	</div>
 </div>

@@ -42,6 +42,7 @@ match '/activations/:activation_code', :controller => 'activations', :action => 
     resources :tasks 
   end
     
+    resources :subtaskusers
 
 
   

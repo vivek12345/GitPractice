@@ -62,7 +62,6 @@ GEM
       coffee-script-source
       execjs
     coffee-script-source (1.6.3)
-    commonjs (0.2.7)
     daemons (1.1.9)
     devise (2.2.8)
       bcrypt-ruby (~> 3.0)
@@ -73,8 +72,6 @@ GEM
     eventmachine (1.0.3-x86-mingw32)
     execjs (2.0.2)
     fastercsv (1.5.5)
-    font-awesome-less (4.0.2)
-      less-rails (>= 2.4.2)
     formtastic (2.3.1)
       actionpack (>= 3.0)
     has_scope (0.6.0.rc)
@@ -93,11 +90,6 @@ GEM
     kaminari (0.16.1)
       actionpack (>= 3.0.0)
       activesupport (>= 3.0.0)
-    less (2.4.0)
-      commonjs (~> 0.2.7)
-    less-rails (2.4.2)
-      actionpack (>= 3.1)
-      less (~> 2.4.0)
     mail (2.4.4)
       i18n (>= 0.4.0)
       mime-types (~> 1.16)
@@ -110,6 +102,7 @@ GEM
     mime-types (1.25.1)
     multi_json (1.8.2)
     orm_adapter (0.5.0)
+    pg (0.17.1-x86-mingw32)
     polyamorous (0.5.0)
       activerecord (~> 3.0)
     polyglot (0.3.3)
@@ -128,6 +121,11 @@ GEM
       activesupport (= 3.2.1)
       bundler (~> 1.0)
       railties (= 3.2.1)
+    rails_12factor (0.0.2)
+      rails_serve_static_assets
+      rails_stdout_logging
+    rails_serve_static_assets (0.0.2)
+    rails_stdout_logging (0.0.3)
     railties (3.2.1)
       actionpack (= 3.2.1)
       activesupport (= 3.2.1)
@@ -181,9 +179,11 @@ DEPENDENCIES
   authlogic
   bootstrap-sass (~> 3.0.3.0)
   coffee-rails (~> 3.2.1)
-  font-awesome-less
   jquery-rails
+  pg (= 0.17.1)
   rails (= 3.2.1)
+  rails_12factor (= 0.0.2)
+  rake (~> 10.1.1)
   sass-rails (~> 3.2.3)
   shelly-dependencies
   sqlite3

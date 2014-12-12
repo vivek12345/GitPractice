@@ -11,6 +11,7 @@
   <%=f.hidden_field :task_id%>
   <%=f.hidden_field :start_date %>
   <%=f.hidden_field :end_date%>
+  <%=f.hidden_field :complete%>
   <%= f.submit "save",class:'btn btn-success col-md-4 col-xs-10 col-sm-10' %>
   <a data-id='<%=subtask.id %>' href="#" class="myclose"><i class="fa fa-times fa-lg" style="margin:10px auto;"></i></a>
   <% end %>

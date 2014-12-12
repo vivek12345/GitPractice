@@ -1,4 +1,6 @@
-<%=render 'layouts/modal',:subtask=>subtask %>
+<div class="mymodal">
+<%=render 'layouts/modal',:subtask=>subtask%>
+</div>
 <div class="dropdown" id="dropdownMenu<%=subtask.id %>"> 
   <a data-id='<%=subtask.id %>' data-target="#" style="float:right;" class="dropdown-toggle" id='dropdownMenu<%=subtask.id %>' data-toggle="dropdown">
     <i class="fa fa-pencil-square-o" style="margin-right:10px;margin-top:10px;"></i>

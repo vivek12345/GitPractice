@@ -25,7 +25,7 @@
 						:id => task.id, :class => 'elm_class'
 					} do |f| %>
 
-			<%= f.text_area :name,rows:'3',cols:'3',:class=>'myarea'%>
+			<%= f.text_area :name,rows:'3',cols:'3',:class=>'myarea',:id=>"myarea_#{task.id}"%>
 			<%= f.submit "save",class:'btn btn-mini btn-success col-md-4' %>
 			<a data-id='<%=task.id %>' href="#">
 				<i class="fa fa-times fa-lg" style="margin:10px auto;"></i>
