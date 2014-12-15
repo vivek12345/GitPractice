@@ -145,6 +145,7 @@ GEM
       hike (~> 1.2)
       rack (~> 1.0)
       tilt (~> 1.1, != 1.3.0)
+    sqlite3 (1.3.9-x86-mingw32)
     thin (1.6.1)
       daemons (>= 1.0.9)
       eventmachine (>= 1.0.0)
@@ -179,5 +180,6 @@ DEPENDENCIES
   rake (~> 10.1.1)
   sass-rails (~> 3.2.3)
   shelly-dependencies
+  sqlite3
   twitter-typeahead-rails
   uglifier (>= 1.0.3)

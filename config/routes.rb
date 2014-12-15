@@ -1,7 +1,6 @@
 MyTodo::Application.routes.draw do
   root :to => 'plan_your_tasks#index'
-  devise_for :admin_users, ActiveAdmin::Devise.config
-  ActiveAdmin.routes(self)
+  
 
   get "activations/create"
   get "tasks/edit"
