@@ -2,7 +2,7 @@ source 'https://rubygems.org'
 
 gem 'rails', '3.2.1'
  # sass-rails needs to be higher than 3.2
-gem 'bootstrap-sass', '~> 3.0.3.0'
+
 #gem 'font-awesome-less'
 gem 'authlogic'
 gem 'twitter-typeahead-rails'
@@ -29,6 +29,7 @@ end
 
 group :development do
 	gem 'sqlite3'
+	gem 'bootstrap-sass', '3.2.0.0'
 end
 
 
@@ -36,6 +37,8 @@ group :production do
   gem 'pg',             '0.17.1'
   #gem 'rails_12factor', '0.0.2'
   gem 'shelly-dependencies'
+   gem 'rails_12factor', '0.0.2'
+  gem 'bootstrap-sass', '3.2.0.0'
 end
 
 gem 'jquery-rails'
