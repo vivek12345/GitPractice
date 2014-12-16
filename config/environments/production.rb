@@ -66,7 +66,7 @@ MyTodo::Application.configure do
   # with SQLite, MySQL, and PostgreSQL)
   # config.active_record.auto_explain_threshold_in_seconds = 0.5
   config.assets.debug = true
-  config.action_mailer.default_url_options = {:host => 'http://gitpracticedeletionoftask3796.ninefold-apps.com'} 
+  config.action_mailer.default_url_options = {:host => 'https://fierce-dawn-4887.herokuapp.com'} 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true 
   config.action_mailer.raise_delivery_errors = true 
