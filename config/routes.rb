@@ -9,6 +9,8 @@ MyTodo::Application.routes.draw do
   match '/subtasks/createuser', :controller => 'subtasks', :action => 'createuser'
   match '/subtasks/updateDatestart', :controller => 'subtasks', :action => 'updateDatestart'
   match '/subtasks/updateDateend', :controller => 'subtasks', :action => 'updateDateend'
+
+  match '/subtask_users/delete', :controller => 'subtask_users', :action => 'delete'
   
   resources :users, :user_sessions
   match 'login' => 'user_sessions#new', :as => :login

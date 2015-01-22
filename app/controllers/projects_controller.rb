@@ -12,6 +12,7 @@ class ProjectsController < ApplicationController
 		respond_to do |format|
 		if @project.save
 			format.html{redirect_to :projects}
+			format.js
 	
 			flash[:success]="Project created successfully"
 		else

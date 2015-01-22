@@ -35,7 +35,7 @@ class SubtasksController < ApplicationController
 		#@task=@subtask.task
 		#@subtask.description=params[:subtask][:description]
 		if(!params[:commit].nil?)
-			if(params[:commit]=="Mark As Complete")
+			if(params[:commit]=="Mark As Complete"||params[:commit]=="Mark As Incomplete")
 				params[:subtask][:complete]=@subtask.toggle(:complete).complete
 			end
 		end
@@ -58,7 +58,9 @@ class SubtasksController < ApplicationController
 	end
 
 	def query
+
 		users = User.joins(:assigns => :project)
+		
 		foundusers=users.where("username LIKE ?", "%#{params[:q]}%")
       	respond_to do |format|
       		format.json do
@@ -75,10 +77,13 @@ class SubtasksController < ApplicationController
     end
 
     def createuser
-    	subtaskuser=SubtaskUser.create(params[:user])
-    	subtaskuser.save
+    	@subtaskuser=SubtaskUser.create(params[:user])
+    	respond_to do |format|
+			if @subtaskuser.save
+				update.js
+			end
+    	end
     end
 end
-	
-	
+		
 end
