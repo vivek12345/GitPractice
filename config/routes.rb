@@ -30,7 +30,8 @@ match '/activations/:activation_code', :controller => 'activations', :action => 
   #resources :activations
   
 
-
+  resources :projects
+  
   resources :subtasks
   resources :tasks do
       resources :subtasks

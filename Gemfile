@@ -30,6 +30,8 @@ end
 group :development do
 	gem 'sqlite3'
 	gem 'bootstrap-sass', '3.2.0.0'
+  gem 'meta_request'
+  gem 'pry-rails'
 end
 
 

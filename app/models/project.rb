@@ -1,9 +1,10 @@
 class Project < ActiveRecord::Base
 	extend FriendlyId
 
+	attr_accessible :name, :friendly_id,:description
+
 	friendly_id :name, use: :slugged
 	validates :name,presence: :true
-	validates :description,presence: :true
 	has_many :tasks,dependent: :destroy
 	has_many :assigns,dependent: :destroy
 	has_many :subtasks,through: :tasks

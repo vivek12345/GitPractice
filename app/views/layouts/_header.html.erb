@@ -22,8 +22,8 @@
     <%else%>
 
       <li class="active"><a href="<%=root_url %>"><span class="glyphicon glyphicon-home"></span> Home</a></li>
-      <li><%=link_to "Help",'#'%></li>
-      <li><%=link_to "About-us",'#'%></li>
+      <!--li><%=link_to "Help",'#'%></li>
+      <li><%=link_to "About-us",'#'%></li-->
             </ul>
             <%end%>
       <ul class="nav navbar-nav navbar-right">
@@ -32,8 +32,8 @@
       <a href="#" class="dropdown-toggle" data-toggle="dropdown"><span class="glyphicon glyphicon-user"></span><%=current_user.username %><i class="icon-chevron-down"></i> 
               </a>
              <ul class="dropdown-menu">
-              <li><%=link_to 'Edit profile',edit_user_path(current_user),style:'color:#000;' %></li>
-              <li class="divider"></li>
+              <!--li><%=link_to 'Edit profile',edit_user_path(current_user),style:'color:#000;' %></li>
+              <li class="divider"></li-->
               <li><%=link_to 'logout',:logout,style:'color:#000;' %></li>
               </ul>
       </li>
@@ -42,9 +42,9 @@
 
       
       
-      <li><%=link_to 'Login',:login,class:'btn btn-primary btn-sm mylink'%></li>
+      <li><%=link_to 'Login',:login,class:'col-xs-12 col-sm-12 btn btn-primary btn-sm mylink'%></li>
             <li class="divider"></li>
-            <li><%=link_to "Sign Up",:signup,class:'btn btn-success btn-sm mylink'%></li>
+            <li><%=link_to "Sign Up",:signup,class:'col-xs-12 col-sm-12 btn btn-success btn-sm mylink'%></li>
             
       <%end%>
       </ul>

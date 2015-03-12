@@ -61,7 +61,7 @@ class SubtasksController < ApplicationController
 
 		users = User.joins(:assigns => :project)
 		
-		foundusers=users.where("username LIKE ?", "%#{params[:q]}%")
+		foundusers=users.where("username LIKE ?", "#{params[:q]}%")
       	respond_to do |format|
       		format.json do
         # Create an array from the search results.

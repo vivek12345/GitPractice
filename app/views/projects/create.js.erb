@@ -1,3 +1,7 @@
-$('.yourprojects').html('<%=j render partial:"projects/projects", object: @projects %>');
+/*$('#yourprojects_<%=current_user.id%>').append('<%=j render partial:"projects/projects", object: @project %>');*/
+
+$('#yourproject_<%=current_user.id%>').append('<%=j render partial:"projects/projects",object:@project%>');
+$('#myproject_'+<%=current_user.id%>).val(' ');
+$('.dropdownnewproject').slideToggle(1000);
 
 

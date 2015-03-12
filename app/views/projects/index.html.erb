@@ -1,52 +1,41 @@
 <% provide(:title,'PlanYourTask') %>
 <div class="mycontainer">
-<div class="myprojcont container">
-	<div class="row yourprojects">
-		<% if @projects.any? %>
-				<%@projects.each do |project| %>
-					<%=render 'projects/projects',:project => project %>
-				<%end%>
-		<%end%>
-			<!--div class="col-md-2">
-				<p class="addproject"><a href="#" class="projectform">Create a new Project</a></p>
-				<div class="addprojectform" style="width:218px;margin:0 2px 0px 3px;">
-					<%=form_for @projects.new,:remote => true do |t| %>
-					<%= t.text_field :name%>
-					<%=t.submit "Save",class:'btn btn-primary'%>
-					<a href="#" id="closeproject"><i class="fa fa-times fa-lg"></i></a>
-					<%end%>
-				</div>
-			</div-->
-			<div class="col-md-3 col-xs-12 newproject">
-					<a class="btn btn-warning" style="border-bottom-left-radius:0px;border-bottom-right-radius:0px;display:block;">Create New Project
-					</a>
-				
-				<div class="dropdownnewproject">
-					<div class="projectdropdown" style="background:#bbb;border-bottom-left-radius:5px;border-bottom-right-radius:5px;margin:auto;padding:2px;
+	<div class="myprojcont container">
+		<div class="row yourprojects col-md-9" id="yourproject_<%=current_user.id%>">
+			<% if @projects.any? %>
+			<%@projects.each do |project| %>
+			<%=render 'projects/projects',:project => project %>
+			<%end%>
+			<%end%>
+		</div>
+		<div>
+		<div class="col-md-3 col-xs-12 newproject">
+			<a class="btn btn-warning" style="border-bottom-left-radius:0px;border-bottom-right-radius:0px;display:block;">Create New Project
+			</a>
+
+			<div class="dropdownnewproject">
+				<div class="projectdropdown" style="background:#bbb;border-bottom-left-radius:5px;border-bottom-right-radius:5px;margin:auto;padding:2px;
 					display:block;">
-					<p class="example-description">Enter the name of the project</p>
+					<p class="name_project">Enter the name of the project</p>
 					<%=form_for Project.new,:remote => true do |f|%>
-						<%=f.text_field :name,class:'form-control'%>
-						<%=f.submit class:'col-md-6 btn btn-success'%>
+					<%=f.text_field :name,class:'form-control',size:15,:id=>"myproject_#{current_user.id}"%>
+					<%=f.submit class:'col-md-6 btn btn-success'%>
 					<%end%>
 					<a href="#" class="closeproject"><i class="fa fa-times fa-lg" style="margin:10px auto;"></i></a>
-					</div>
 				</div>
 			</div>
-				<script type="text/javascript">
-					$('.newproject > a').click(function(e){
-						$('.dropdownnewproject').slideDown(1000);
+		</div>
+		<script type="text/javascript">
+		$('.newproject > a').click(function(e){
+			$('.dropdownnewproject').slideDown(1000);
 
-						e.preventDefault();
-					});
-					$('.closeproject').click(function(e){
-						$('.dropdownnewproject').slideUp(1000);
-						e.preventDefault();
-					});
-				</script>
-
-
-				
+			e.preventDefault();
+		});
+		$('.closeproject').click(function(e){
+			$('.dropdownnewproject').slideUp(1000);
+			e.preventDefault();
+		});
+		</script>
 	</div>
 </div>
 </div>
