@@ -32,4 +32,10 @@ class ProjectsController < ApplicationController
 	def index
 		@projects=current_user.projects
 	end
+
+	def destroy
+		@project=Project.find(params[:project][:project_id])
+		@project.destroy
+	end
+
 end

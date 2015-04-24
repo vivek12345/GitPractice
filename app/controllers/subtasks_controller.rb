@@ -60,8 +60,16 @@ class SubtasksController < ApplicationController
 	def query
 
 		users = User.joins(:assigns => :project)
-		
+		#added_users=SubtaskUser.find_by_subtask_id(26)
+		#added_users=added_users.to_a
 		foundusers=users.where("username LIKE ?", "#{params[:q]}%")
+		#showusers=[]
+		#for user in foundusers
+		#	if !added_users[0].include?user
+		#		showusers.push(user)
+		#	end
+		#end
+		#binding.pry
       	respond_to do |format|
       		format.json do
         # Create an array from the search results.
