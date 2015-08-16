@@ -1,66 +1,59 @@
-<% provide(:title,'ToDoProject') %>
+<% provide(:title,'PlanYourTask') %>
 <div class="mycontainer">
-<div class="myprojcont container">
-	<div class="row">
-		<!--div class="user span9 default-skin"-->
-		<div class="col-md-9 user default-skin">
-			<ul class="myul">
-			<div class="myultask">
-				<% if @project.tasks.any? %>
-				<%=render :partial=> @project %>
-				<%end%>
-				</div>
-				<div class="tasks">
-				<p class="addtask"><a href="#" class="taskform">Add a Task</a></p>
-				<div class="addtaskform" style="width:218px;margin:0 2px 0px 3px;">
-				<%=form_for [@project,@project.tasks.build],:remote => true do |t| %>
-		
-					
-					<%= t.text_field :taskname%>
-		
-					<%=t.submit "Save",class:'btn btn-primary'%>
-					<a href="#" id="close"><i class="fa fa-times fa-lg"></i></a>
-					<%end%>
-					
-				</div>
-				</div>
-				<script type="text/javascript">
-				$('.addtask > a').click(function(e){
-              $('.addtaskform').show(1000);
+	<div class="myprojcont container">
+		<div class="row">
+			<!--div class="user span9 default-skin"-->
+			<div class="col-md-9 user default-skin">
+				<ul class="myul">
+					<div class="myultask">
+						<% if @project.tasks.any? %>
+						<%=render :partial=> @project %>
+						<%end%>
+					</div>
+					<div class="tasks">
+						<p class="addtask"><a href="#" class="taskform">Add a Task</a></p>
+						<div class="addtaskform" style="width:218px;margin:0 2px 0px 3px;">
+							<%=form_for [@project,@project.tasks.build],:remote => true do |t| %>
 
-              e.preventDefault();
-            });
-            $('#close').click(function(e){
-              $('.addtaskform').hide(1000);
-              e.preventDefault();
-            });
-            </script>
 
-				
-				
+							<%= t.text_field :taskname%>
 
-				
-			</ul>	
-			
-			
+							<%=t.submit "Save",class:'btn btn-primary'%>
+							<a href="#" id="close"><i class="fa fa-times fa-lg"></i></a>
+							<%end%>
+
+						</div>
+					</div>
+					<script type="text/javascript">
+					$('.addtask > a').click(function(e){
+						$('.addtaskform').show(1000);
+
+						e.preventDefault();
+					});
+					$('#close').click(function(e){
+						$('.addtaskform').hide(1000);
+						e.preventDefault();
+					});
 
 
 
+					</script>
+
+				</ul>	
+
+			</div>
+
+			<!--div class="span3" id="rightcolumn"-->
+			<!--div class="col-md-3 col-lg-3" id="rightcolumn">
+				<p><%=@project.name %></p>
+				<p><%=link_to 'Add Task',new_project_task_path(@project) %></p>
+			</div-->
 
 		</div>
-
-
-	
-		<!--div class="span3" id="rightcolumn"-->
-		<div class="col-md-3 col-lg-3" id="rightcolumn">
-			<p><%=@project.name %></p>
-			<p><%=link_to 'Add Task',new_project_task_path(@project) %></p>
-	
-		</div>
-	
 	</div>
 </div>
-</div>
+
+
 
 
 

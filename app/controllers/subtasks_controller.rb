@@ -34,8 +34,14 @@ class SubtasksController < ApplicationController
 		@subtask=Subtask.find(params[:id])
 		#@task=@subtask.task
 		#@subtask.description=params[:subtask][:description]
+		if(!params[:commit].nil?)
+			if(params[:commit]=="Mark As Complete"||params[:commit]=="Mark As Incomplete")
+				params[:subtask][:complete]=@subtask.toggle(:complete).complete
+			end
+		end
 		respond_to do |format|
-			if @subtask.update_attribute(:description,params[:subtask][:description])
+			
+			if @subtask.update_attributes(params[:subtask])
 				format.html{redirect_to @project}
 				format.js
 			else
@@ -52,12 +58,22 @@ class SubtasksController < ApplicationController
 	end
 
 	def query
+
 		users = User.joins(:assigns => :project)
-		foundusers=users.where('username like %',:q)
+		#added_users=SubtaskUser.find_by_subtask_id(26)
+		#added_users=added_users.to_a
+		foundusers=users.where("username LIKE ?", "#{params[:q]}%")
+		#showusers=[]
+		#for user in foundusers
+		#	if !added_users[0].include?user
+		#		showusers.push(user)
+		#	end
+		#end
+		#binding.pry
       	respond_to do |format|
       		format.json do
         # Create an array from the search results.
-        		results = users.map do |user|
+        		results = foundusers.map do |user|
           		# Each element will be a hash containing only the title of the article.
           		# The title key is used by typeahead.js.
          		 { username: user.username,
@@ -69,10 +85,13 @@ class SubtasksController < ApplicationController
     end
 
     def createuser
-    	subtaskuser=SubtaskUser.create(params[:user])
-    	subtaskuser.save
+    	@subtaskuser=SubtaskUser.create(params[:user])
+    	respond_to do |format|
+			if @subtaskuser.save
+				update.js
+			end
+    	end
     end
 end
-	
-	
+		
 end

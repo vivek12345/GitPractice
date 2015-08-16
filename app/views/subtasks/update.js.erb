@@ -1,5 +1,4 @@
-$('#mydes_'+ <%=@subtask.id %>).html('<%=j(render partial: "subtasks/descform",locals: {subtask: @subtask})%>');
-
+$('#modalcontent_'+ <%=@subtask.id %>).html('<%=j(render partial: "layouts/modalcontent",locals: {subtask: @subtask})%>');
 
 
 

@@ -1,71 +1,50 @@
-<!--div class="span5 tasks" id='tasks_<%=task.id %>'-->
-
 <div class="col-xs-12 col-sm-5 col-md-5 col-lg-5  tasks" id='tasks_<%=task.id %>'>
-		<div class="addtaskdiv" id="addtaskdiv_<%=task.id %>">
-
-			<p><b>
-			
-			<%=task.taskname %>
-			</b>
-			
-			<!--i class="fa fa-pencil-square-o" style="margin-right:10px;margin-top:10px;"></i-->
-			<span style="float:right;margin-right:10px;" data-toggle="modal" data-target="#myModal"><%=link_to '',edit_task_path(task),class:'fa fa-pencil-square-o' %></span>
-					</p>
+	<div class="addtaskdiv" id="addtaskdiv_<%=task.id %>">
+		<div class="dropdown" id="dropdownMenuTask<%=task.id %>"> 
+			<a data-id='<%=task.id %>' data-target="#" style="float:right;" class="dropdown-toggle" id='dropdownMenuTask<%=task.id %>' data-toggle="dropdown">
+    				<i class="fa fa-pencil-square-o" style="margin-right:10px;margin-top:10px;">
+    				</i>
+  			</a>
+			<p>
+				<b><%=task.taskname %></b>
+			</p>
+			<%=render 'tasks/dropdown',:task=>task %>
+		
 			<div class="addtaskmovable" id="addtaskmovable_<%=task.id%>">
-			<%if task.subtasks.any? %>
-  			<% task.subtasks.each do |subtask| %>
-  			
-
-  							<%=render :partial=>subtask,:subtask=>subtask%>
-  							
-
-
-				<!--
-					<p class="subtask" data-toggle="modal" data-target="#myModal"><%=subtask.name %>
-					<a data-id='<%=subtask.id %>' href="#" style="float:right;"><i class="fa fa-pencil-square-o"></i></a></p-->
-
-			<%end%>
-			<%end%>
+				<%if task.subtasks.any? %>
+					<% task.subtasks.each do |subtask| %>
+						<%=render :partial=>subtask,:subtask=>subtask%>
+					<%end%>
+				<%end%>
 			</div>
-			
-			
-
-			
 		</div>
-		<div class="subtaskform" id="subtask_form_<%=task.id %>" style="width:218px;margin:0 2px 0px 3px;">
-						
-			<%= form_for [task, task.subtasks.build],:remote => true,:html => {
-                            :id => task.id, :class => 'elm_class'
-                             } do |f| %>
-    				
-    			<%= f.text_area :name,rows:'3',cols:'3',:class=>'myarea'%>
-    								
-    			<%= f.submit "save",class:'btn btn-mini btn-success col-md-4' %>
-    			<a data-id='<%=task.id %>' href="#"><i class="fa fa-times fa-lg" style="margin:10px auto;"></i></a>
-
-			<% end %>
-					
-		</div>
-
-					
-
-		<p class="addcard" id="addcard_<%=task.id%>"><a href="#" data-id='<%= task.id %>' id='add_card_<%= task.id %>'>Add a card...</a></p>
-		<script>
-		$('.addcard > a').click(function(e){
-
-              
-              $('#subtask_form_' + $(this).data('id')).show(1000);
-             
-            
-   e.preventDefault();
-});
-            $('.subtaskform a').click(function(e){
-              $('#subtask_form_' + $(this).data('id')).hide(1000);
-              e.preventDefault();
-            });
-            </script>
 	</div>
+	<div class="subtaskform" id="subtask_form_<%=task.id %>" style="width:218px;margin:0 2px 0px 3px;">
+		<%= form_for [task, task.subtasks.build],:remote => true,:html => 
+					{
+						:id => task.id, :class => 'elm_class'
+					} do |f| %>
 
+			<%= f.text_area :name,rows:'3',cols:'3',:class=>'myarea',:id=>"myarea_#{task.id}"%>
+			<%= f.submit "save",class:'btn btn-mini btn-success col-md-4' %>
+			<a data-id='<%=task.id %>' href="#">
+				<i class="fa fa-times fa-lg" style="margin:10px auto;"></i>
+			</a>
 
-  				
-  				
+		<% end %>
+					
+	</div>
+	<p class="addcard" id="addcard_<%=task.id%>">
+		<a href="#" data-id='<%= task.id %>' id='add_card_<%= task.id %>'>Add a card...</a>
+	</p>
+	<script>
+		$('.addcard > a').click(function(e){
+			$('#subtask_form_' + $(this).data('id')).show(1000);
+			e.preventDefault();
+		});
+		$('.subtaskform a').click(function(e){
+			$('#subtask_form_' + $(this).data('id')).hide(1000);
+			e.preventDefault();
+		});
+	</script>
+</div>

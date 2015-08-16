@@ -1,9 +1,16 @@
 MyTodo::Application.routes.draw do
+  root :to => 'plan_your_tasks#index'
+  
+
   get "activations/create"
   get "tasks/edit"
   get "subtasks/query"
 
   match '/subtasks/createuser', :controller => 'subtasks', :action => 'createuser'
+  match '/subtasks/updateDatestart', :controller => 'subtasks', :action => 'updateDatestart'
+  match '/subtasks/updateDateend', :controller => 'subtasks', :action => 'updateDateend'
+
+  match '/subtask_users/delete', :controller => 'subtask_users', :action => 'delete'
   
   resources :users, :user_sessions
   match 'login' => 'user_sessions#new', :as => :login
@@ -18,11 +25,13 @@ MyTodo::Application.routes.draw do
  end
 end
 
- match '/activations/:activation_code', :controller => 'activations', :action => 'create'
+match '/activations/:activation_code', :controller => 'activations', :action => 'create' , :as => 'activation'
+
   #resources :activations
   
 
-
+  resources :projects
+  
   resources :subtasks
   resources :tasks do
       resources :subtasks
@@ -35,9 +44,10 @@ end
     resources :tasks 
   end
     
+    resources :subtaskusers
 
 
-  root :to => 'plan_your_tasks#index'
+  
   # The priority is based upon order of creation:
   # first created -> highest priority.
 

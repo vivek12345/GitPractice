@@ -1,7 +1,9 @@
 /*$('#adddtaskdiv_'+ <%=@task.id %>).append('<%= escape_javascript(render :partial=>'subtasks/subtask',:object=>@subtask) %>');*/
 /*$('#addtaskdiv_'+ <%=@task.id %>).append('<%=j render partial: "subtasks/subtask", object: @subtask %>');*/
+
 $('#addtaskmovable_'+ <%=@task.id %>).append('<%=j render partial: "subtasks/subtask", object: @subtask %>');
 /*$(":input:not(input[type=submit])").val("");*/
+$('#myarea_'+<%=@task.id%>).val(' ');
 $('#subtask_form_'+<%=@task.id %>).hide(1000);
 
 

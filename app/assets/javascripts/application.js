@@ -18,5 +18,4 @@
 //= require twitter/typeahead
 
 //= require_tree .
-//removed bootstrap
 

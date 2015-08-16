@@ -1,31 +1,43 @@
-<% provide(:title,'ToDoProject') %>
+<% provide(:title,'PlanYourTask') %>
 <div class="mycontainer">
-<div class="myprojcont container">
-	<div class="row">
-		<div class="col-xs-offset-1 col-xs-11 col-sm-12 col-sm-offset-0 col-md-12 col-md-offset-0 col-lg-12 col-lg-offset-0">
+	<div class="myprojcont container">
+		<div class="row yourprojects col-md-9" id="yourproject_<%=current_user.id%>">
 			<% if @projects.any? %>
-				<%@projects.each do |project| %>
-					<div class="col-xs-offset-1 col-xs-11 col-sm-12 col-sm-offset-0 col-md-3 col-md-offset-0 col-lg-3 col-lg-offset-0 projects" style="margin-bottom:15px;">
-						<p style="font-family:TimesNewRoman;font-size:25px;margin:25px auto;text-align:center;"><%=link_to project.name,project,style:'text-decoration:none;'%></p>
-
-					</div>
-				<%end%>
+			<%@projects.each do |project| %>
+			<%=render 'projects/projects',:project => project %>
 			<%end%>
-			<!--
-			<div class="tasks span3">
-				<p class="addproject"><a href="#" class="projectform">Add a Project</a></p>
-				<div class="addprojectform" style="width:218px;margin:0 2px 0px 3px;">
-					<%=form_for [Project.new],:remote => true do |t| %>
-		
-					
-					<%= t.text_field :name%>
-		
-					<%=t.submit "Save",class:'btn btn-primary'%>
-					<a href="#" id="close"><i class="fa fa-times fa-lg"></i></a>
-					<%end%>
-				</div>
-				</div>-->
+			<%end%>
 		</div>
+		<div>
+		<div class="col-md-3 col-xs-12 newproject">
+			<a class="btn btn-warning" style="border-bottom-left-radius:0px;border-bottom-right-radius:0px;display:block;">Create New Project
+			</a>
+
+			<div class="dropdownnewproject">
+				<div class="projectdropdown" style="background:#bbb;border-bottom-left-radius:5px;border-bottom-right-radius:5px;margin:auto;padding:2px;
+					display:block;">
+					<p class="name_project">Enter the name of the project</p>
+					<%=form_for Project.new,:remote => true do |f|%>
+					<%=f.text_field :name,class:'form-control',size:15,:id=>"myproject_#{current_user.id}"%>
+					<%=f.submit class:'col-md-6 btn btn-success'%>
+					<%end%>
+					<a href="#" class="closeproject"><i class="fa fa-times fa-lg" style="margin:10px auto;"></i></a>
+				</div>
+			</div>
+			
+		</div>
+		<script type="text/javascript">
+		$('.newproject > a').click(function(e){
+			$('.dropdownnewproject').slideDown(1000);
+
+			e.preventDefault();
+		});
+		$('.closeproject').click(function(e){
+			$('.dropdownnewproject').slideUp(1000);
+			e.preventDefault();
+		});
+		</script>
 	</div>
+</div>
 </div>
 

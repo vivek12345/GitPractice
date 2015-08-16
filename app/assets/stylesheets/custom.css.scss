@@ -1,3 +1,5 @@
+//@import "bootstrap-sprockets";
+@import "bootstrap";
 
 /* universal */
 
@@ -169,9 +171,24 @@ color:#000;
 border-top:2px solid #001916;
 border-bottom:2px solid #001916;
 }
+/*chnages by manan*/
+.dropdown
+{
+  position:relative;
+}
 
 .dropdown-menu
 {
+  /*margin-left:200px;
+  margin-top:-30px;*/
+  position:absolute;
+  left:199px;
+  top:20px;
+}
+/*changes end here*/
+
+.dropdown-menu-task
+{ 
   margin-left:200px;
   margin-top:-30px;
 }
@@ -345,23 +362,8 @@ opacity:0.6;
   opacity:0.6;
 }
 
-.addprojectform
-{
-  display:none;
-}
-.addproject
-{
-border:2px solid #e3e3e3;
-  
-  box-shadow:0 1px 2px rgba(0, 0, 0, 0.1), 0 1px 0 rgba(0, 0, 0, 0.1);
-  margin-right:30px;
-  margin-left:0px;
-  border-radius:8px;
-  background:#555;
-  margin-top:10px;
-  padding: 4px 3px 3px 3px;
-  
-}
+
+
 
 /*.row-fluid [class*="projects"] {
 margin-left:0px;
@@ -485,7 +487,7 @@ width:1000px;
 }
 .subtaskdescform
 {
-  display:none;
+  visibility:hidden;
   .myarea
   {
   background: #7d7e7d; /* Old browsers */
@@ -538,13 +540,88 @@ opacity:0.8;
 
 .userlist
 {
-  background:#000;
+  background:#222;
   color:#fff;
-  border-radius:2px;  
-  font-size:10px;
-  padding:5px auto;
+  padding:5px;
+  border: 2px solid #ccc;
+  -webkit-border-radius: 8px;
+  -moz-border-radius: 8px;
+  border-radius: 8px;
+  font-size:12px;
+}
+
+/*Add a scrollbar coz the content might overflow and go out of the modal content area*/
+.subtask_description
+{
+  overflow-y:auto;
+  display:block;
+  max-height:200px;
+  background:#fff;
+  border-radius:5px;
+  padding:10px;
+  -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            border:2px solid #000;
+            border-bottom:3px solid #000;
+
 }
 
 
+@media screen and (min-width: 768px) {
+  .modal-dialog {
+    width: 800px;
+    margin: 30px auto;
+  }
+  .modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+}
 
+@media screen and (max-width: 500px) {
+  .modal-dialog {
+    
+    margin: 30px auto;
+  }
+  .modal-content {
+    -webkit-box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.5);
+  }
+  .modal-body {
+    height:500px;
+  }
+}
+.modal-body
+{
+  height:450px;
+}
+
+@media (min-width: 768px)
+{
+  .navbar-nav > li > a 
+  {
+    padding-top: 18px;
+    padding-bottom: 15px;
+  }
+}
+
+.navbar-right > li >a 
+{
+  top: 5px;
+  width:150px;
+  height: 50px;
+  padding:13px;
+  }
+
+  .pagefooter
+  {
+    background-image:url('b10.png');
+  background-repeat:repeat;
+  }
+
+
+  .dropdownnewproject
+  {
+    display:none;
+  }
 
